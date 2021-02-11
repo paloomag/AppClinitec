@@ -10,6 +10,7 @@ export default function formAmigo({navigation}) {
     const [cpfCnpj, setCpfCnpj] = useState();
     const [telefone, setTelefone] = useState();
     const [email, setEmail] = useState('');
+    //algo mudado
 
     const [nomeIndicado, setNomeIndicado] = useState('');
     const [cpfCnpjIndicado, setCpfCnpjIndicado] = useState();
