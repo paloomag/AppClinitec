@@ -97,14 +97,13 @@ const styles = StyleSheet.create({
     resizeMode:'contain',
     alignItems:'center',
     justifyContent:'center',
-    marginLeft:20,
+    margin:10,
   },
   text:{
     color:'black',
     fontWeight:'bold',
   },
   space:{
-    marginTop:20,
     justifyContent:'center',
     flexDirection:"row",
   },
