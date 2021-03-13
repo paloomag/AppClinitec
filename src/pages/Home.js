@@ -56,11 +56,11 @@ export default function Home({navigation}) {
         
           <View  style={styles.space}>
               
-              <TouchableOpacity style={styles.botaos}
+              <TouchableOpacity style={styles.botaolarge}
                onPress={ () => navigation.navigate('formAmigo') }>
                   
-                  <MaterialCommunityIcons name="hand-pointing-down" color="#F78931" size={50} /> 
-                  <Text style={styles.text}>Indique um Amigo</Text> 
+                  <MaterialCommunityIcons name="hand-pointing-down" color="white" size={26} /> 
+                  <Text style={styles.textlarge}>Indique um Amigo</Text> 
               
               </TouchableOpacity>
           
@@ -99,8 +99,24 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     margin:10,
   },
+  botaolarge:{
+    backgroundColor:'#F78931',
+    borderWidth: 2,
+    borderColor:'#F78931',
+    borderRadius: 10,
+    width:280,
+    height:60,
+    resizeMode:'contain',
+    alignItems:'center',
+    justifyContent:'center',
+    margin:10,
+  },
   text:{
     color:'black',
+    fontWeight:'bold',
+  },
+  textlarge:{
+    color:'white',
     fontWeight:'bold',
   },
   space:{

@@ -67,8 +67,6 @@ export default function Servicos({navigation}) {
     },
   botaos:{
     backgroundColor:'#F78931',
-    //borderWidth: 2,
-    //borderColor:'grey',
     borderRadius: 15,
     width:'90%',
     height:50,

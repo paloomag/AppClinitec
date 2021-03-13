@@ -15,8 +15,8 @@ const Tab = createMaterialBottomTabNavigator();
     return (
         <Tab.Navigator
             initialRouteName="Home"
-            activeColor="#f0edf6"
-            inactiveColor="#878787"
+            activeColor="#fff"
+            inactiveColor="#FFC094"
             barStyle={{ backgroundColor: '#F78931' }}
         >
         <Tab.Screen 
