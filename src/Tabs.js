@@ -1,7 +1,4 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-//import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -16,8 +13,8 @@ const Tab = createMaterialBottomTabNavigator();
         <Tab.Navigator
             initialRouteName="Home"
             activeColor="#fff"
-            inactiveColor="#FFC094"
-            barStyle={{ backgroundColor: '#F78931' }}
+            inactiveColor="#465b75"
+            barStyle={{ backgroundColor: '#2d4d76' }}
         >
         <Tab.Screen 
         name="Home" 

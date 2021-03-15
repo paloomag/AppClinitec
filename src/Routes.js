@@ -22,7 +22,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
@@ -34,7 +34,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
@@ -46,7 +46,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
@@ -58,7 +58,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
@@ -69,7 +69,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
@@ -80,7 +80,7 @@ import Location from './services/Location'
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {
-                        backgroundColor: '#F78931',
+                        backgroundColor: '#2d4d76',
                     },
                     headerTintColor: '#fff',
                 }}
