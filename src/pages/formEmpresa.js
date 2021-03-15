@@ -36,7 +36,7 @@ export default function formEmpresa({navigation}) {
 
         <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}>
             <KeyboardAvoidingView style={styles.container}>
-                <ScrollView >
+                <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                     <View style={styles.titulos}>
 
                         <Text style={styles.titulo}>Internet para minha Empresa</Text>

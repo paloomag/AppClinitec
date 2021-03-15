@@ -10,6 +10,7 @@ export default function formAmigo({navigation}) {
     const [cpfCnpj, setCpfCnpj] = useState();
     const [telefone, setTelefone] = useState();
     const [email, setEmail] = useState('');
+    //algo mudado
 
     const [nomeIndicado, setNomeIndicado] = useState('');
     const [cpfCnpjIndicado, setCpfCnpjIndicado] = useState();
@@ -27,7 +28,7 @@ export default function formAmigo({navigation}) {
         <KeyboardAvoidingView style={styles.container}>
 
             <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}> 
-                <ScrollView >
+                <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                     
                     <View style={styles.titulos}>
 
