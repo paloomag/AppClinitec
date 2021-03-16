@@ -51,7 +51,6 @@ import Location from './services/Location'
                     headerTintColor: '#fff',
                 }}
                 />
-
                 <Stack.Screen 
                 name="formPlanos"
                 component={formPlanos}
@@ -85,7 +84,6 @@ import Location from './services/Location'
                     headerTintColor: '#fff',
                 }}
                 />
-
             </Stack.Navigator>
         </NavigationContainer>
     );
