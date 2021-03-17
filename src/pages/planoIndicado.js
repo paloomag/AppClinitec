@@ -54,10 +54,10 @@ export default function planoIndicado({navigation}) {
                             <Text style={styles.text}>(47) 3345-4864</Text>
                         </View>
 
-                        <View style={styles.board}>
+                        <TouchableOpacity style={styles.board}>
                             <MaterialCommunityIcons name="whatsapp" color="#3b5998" size={26} /> 
                             <Text style={styles.text}> Enviar Mensagem</Text>
-                        </View>
+                        </TouchableOpacity>
 
                     </View>
                     <View>

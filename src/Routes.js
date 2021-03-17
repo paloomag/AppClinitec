@@ -16,7 +16,7 @@ import planoIndicado from './pages/planoIndicado';
 
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="planoIndicado" screenOptions={{headerShown: true}}>
+            <Stack.Navigator initialRouteName="tabs" screenOptions={{headerShown: true}}>
 
                 <Stack.Screen 
                 name="formAmigo" 

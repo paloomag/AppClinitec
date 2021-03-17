@@ -266,7 +266,7 @@ export default function formPlanos({navigation}) {
                             
                         </View>
 
-                        <TouchableOpacity style={styles.submit} onPress={() => {Alert.alert("", "Enviado!");}}>
+                        <TouchableOpacity style={styles.submit} onPress={ () => navigation.navigate('planoIndicado')}>
 
                             <View style={styles.botao}>
                                 <Text style={styles.submitText}>Mostrar Plano Indicado</Text>
