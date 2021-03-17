@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, Linking, ImageBackground, SafeAreaView }
 import 'react-native-gesture-handler';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import api from '../services/API';
 
 export default function Home({navigation}) {
     return ( 

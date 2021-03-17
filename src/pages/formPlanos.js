@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, Image, Linking,SafeAreaView, ImageBackground,Ke
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 export default function formPlanos({navigation}) {
     return ( 
         <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}>

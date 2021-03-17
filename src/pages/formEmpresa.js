@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
-
+import api from '../services/API';
 
 export default function formEmpresa({navigation}) {
 

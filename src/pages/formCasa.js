@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
+import api from '../services/API';
 
 
 export default function formPlanos({navigation}) {
@@ -34,9 +35,11 @@ export default function formPlanos({navigation}) {
     const [bairroCasa, setBairroCasa] = useState('');
     const [nomeCondominio, setNomeCondominio] = useState('');
 
+
+
+
     return ( 
 
-        
         <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}>
             <KeyboardAvoidingView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
