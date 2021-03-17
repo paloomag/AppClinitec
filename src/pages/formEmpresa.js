@@ -31,6 +31,7 @@ export default function formEmpresa({navigation}) {
     const [numeroEndEmpresa, setNumeroEndEmpresa] = useState();
     const [enderecoEmpresa, setEnderecoEmpresa] = useState('');
     const [bairroEmpresa , setBairroEmpresa] = useState('');
+    const [qtdEquip, setQtdEquip] = useState('');
 
     return ( 
 
@@ -128,8 +129,21 @@ export default function formEmpresa({navigation}) {
                                 <Picker.Item label="Penha" value="PenhaEmpresa" />
                             </Picker>
                         </View>
-
-                        <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
+                        <View style={styles.titulos}>
+                            <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
+                            <Text style={styles.subtitulo}>Computador, celular, tablet, tv, etc.</Text>
+                        </View>
+                        
+                        <TextInput 
+                        style={styles.input}
+                        placeholder="8"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        value={qtdEquip}
+                        keyboardType={'numeric'}
+                        onChangeText={setQtdEquip}
+                        />
+                      {/*   <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
                         <Text style={styles.subtitulo2}>Computador, celular, tablet, tv,</Text>
                         <Text style={styles.subtitulo}> video game, câmeras, etc.</Text>
                         
@@ -153,7 +167,7 @@ export default function formEmpresa({navigation}) {
                             </View>
 
                         </RadioButton.Group>
-
+ */}
                         <View>
 
                               <Text style={styles.titulo}>Uso a internet para:</Text>

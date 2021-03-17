@@ -34,7 +34,7 @@ export default function formPlanos({navigation}) {
     const [numeroEndCasa, setNumeroEndCasa] = useState();
     const [bairroCasa, setBairroCasa] = useState('');
     const [nomeCondominio, setNomeCondominio] = useState('');
-
+    const [qtdEquip, setQtdEquip] = useState('');
 
 
 
@@ -111,7 +111,7 @@ export default function formPlanos({navigation}) {
                         value={bairroCasa}
                         onChangeText={setBairroCasa}
                         />
-                         <View style={styles.droview}>
+                        <View style={styles.droview}>
                             <Picker
                             style={styles.drop}
                             pickerStyleType={false}
@@ -136,7 +136,7 @@ export default function formPlanos({navigation}) {
                         onChangeText={setNomeCondominio}
                         />
 
-                        <Text style={styles.titulo}>Mora em condomínio verical?</Text>
+                        {/* <Text style={styles.titulo}>Mora em condomínio verical?</Text>
                             <Text style={styles.subtitulo2}>Exemplo: Edifício</Text>
 
                             <RadioButton.Group onValueChange={valorRadio => setValorRadio(valorRadio)} value={valorRadio}>
@@ -152,12 +152,23 @@ export default function formPlanos({navigation}) {
 
                             </RadioButton.Group>
 
-                       
-                        <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
-                        <Text style={styles.subtitulo2}>Computador, celular, tablet, tv,</Text>
-                        <Text style={styles.subtitulo}> video game, câmeras, etc.</Text>
+                        */}
+                        <View style={styles.titulos}>
+                            <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
+                            <Text style={styles.subtitulo2}>Computador, celular, tablet, tv, etc.</Text>
+                        </View>
                         
-                        <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
+                        <TextInput 
+                        style={styles.input}
+                        placeholder="8"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        value={qtdEquip}
+                        keyboardType={'numeric'}
+                        onChangeText={setQtdEquip}
+                        />
+
+                        {/* <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
 
                             <View style={styles.botao}>
                                 <RadioButton value="1 - 2 dispositivos" />
@@ -177,10 +188,10 @@ export default function formPlanos({navigation}) {
                             </View>
 
                         </RadioButton.Group>
-
+ */}
                         <View>
 
-                              <Text style={styles.titulo}>Uso a internet para:</Text>
+                            <Text style={styles.titulo}>Uso a internet para:</Text>
 
                             <View style={styles.check}>
                                 <CheckBox
