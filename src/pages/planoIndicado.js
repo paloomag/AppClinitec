@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'react-native-gesture-handler';
-import { Text, View, StyleSheet, Image, Linking,SafeAreaView, ImageBackground,KeyboardAvoidingView,TextInput, ScrollView, Alert } from 'react-native';
+import { Text, View, StyleSheet,ImageBackground, KeyboardAvoidingView, ScrollView} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import api from '../services/API';
 
+export default function planoIndicado({route}) {
 
-export default function planoIndicado({navigation}) {
+    const [planoIndicado, setPlanoIndicado] = useState({})
+    //const [planoMaior, setPlanoMaior] = useState({})
+    
+    useEffect(() => {
+
+        async function init(){
+            const {orcamento} = route.params
+            console.log(orcamento)
+            const plano = await api.get(`/planos/calculaplano/${orcamento}`)
+            setPlanoIndicado(plano.data[0])
+            //console.log(plano)
+            
+        }
+        init()
+    }, []);
     return ( 
         <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}>
             <KeyboardAvoidingView style={styles.container}>
@@ -25,7 +41,7 @@ export default function planoIndicado({navigation}) {
                     </View>
                    
                     <View>
-                        <Text style={styles.titulo}>200 mega </Text>
+                        <Text style={styles.titulo}>teste{/* {planoIndicado.PlanoIndicado} */} </Text>
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="home" color="#3b5998" size={26} /> 
                             <Text style={styles.text}>Para minha casa</Text>
