@@ -34,8 +34,14 @@ export default function formEmpresa({navigation}) {
     const [qtdEquip, setQtdEquip] = useState('');
 
     async function enviarDados(){
-        const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${navegar}/${monitorar}/${servidor}/${nuvem}/${filiais}/${manha}/${tarde}/${noite}/${madrugada}`)
+        var convManha = 'n'
+        if(manha){
+            convManha = 's'
+        }
+
+        const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${navegar}/${monitorar}/${servidor}/${nuvem}/${filiais}/${convManha}/${tarde}/${noite}/${madrugada}`)
         console.log(orcamento)
+        console.log(convManha)
         navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
     }
 
@@ -156,35 +162,35 @@ export default function formEmpresa({navigation}) {
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={navegar}
-                                onPress=  {()=> setNavegar('s')}
+                                onPress=  {()=> setNavegar(!navegar)}
                                 />
                                 <Text>Navegar em sites, e-mails</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={monitorar}
-                                onPress=  {()=> setMonitorar('s')}
+                                onPress=  {()=> setMonitorar(!monitorar)}
                                 />
                                 <Text>Sistema de monitoramento</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={servidor}
-                                onPress=  {()=> setServidor('s')}
+                                onPress=  {()=> setServidor(!servidor)}
                                 />
                                 <Text>Servidor interno</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={nuvem}
-                                onPress=  {()=> setNuvem('s')}
+                                onPress=  {()=> setNuvem(!nuvem)}
                                 />
                                 <Text>Sistema em nuvem</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={filiais}
-                                onPress=  {()=> setOFiliais('s')}
+                                onPress=  {()=> setOFiliais(!filiais)}
                                 />
                                 <Text>Conexão remota com filiais</Text>
                             </View>
@@ -198,28 +204,28 @@ export default function formEmpresa({navigation}) {
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={manha}
-                                onPress=  {()=> setManha('s')}
+                                onPress=  {()=> setManha(!manha)}
                                 />
                                 <Text>Manhã</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={tarde}
-                                onPress=  {()=> setTarde('s')}
+                                onPress=  {()=> setTarde(!tarde)}
                                 />
                                 <Text>Tarde</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={noite}
-                                onPress=  {()=> setNoite('s')}
+                                onPress=  {()=> setNoite(!noite)}
                                 />
                                 <Text>Noite</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={madrugada}
-                                onPress=  {()=> setMadrugada('s')}
+                                onPress=  {()=> setMadrugada(!madrugada)}
                                 />
                                 <Text>Madrugada</Text>
                             </View>

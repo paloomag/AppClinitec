@@ -13,11 +13,11 @@ export default function planoIndicado({route}) {
     useEffect(() => {
 
         async function init(){
-            const {orcamento} = route.params
+            const orcamento = 2706//route.params
             console.log(orcamento)
             const plano = await api.get(`/planos/calculaplano/${orcamento}`)
             setPlanoIndicado(plano.data[0])
-            //console.log(plano)
+            console.log(planoIndicado['Plano indicado'])
             
         }
         init()
@@ -49,12 +49,12 @@ export default function planoIndicado({route}) {
 
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="cloud-download" color="#3b5998" size={26} /> 
-                            <Text style={styles.text}>Download: 200 Mega</Text>
+                            <Text style={styles.text}>Download: {planoIndicado['Download']} Mb</Text>
                         </View>
 
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="cloud-upload" color="#3b5998" size={26} /> 
-                            <Text style={styles.text}>Upload: 100 Mega</Text>
+                            <Text style={styles.text}>Upload: {planoIndicado['Upload']}</Text>
                         </View>
 
                         <View style={styles.board}>
