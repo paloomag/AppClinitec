@@ -3,7 +3,6 @@ import 'react-native-gesture-handler';
 import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-//import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
 import api from '../services/API';
@@ -34,7 +33,45 @@ export default function formPlanos({navigation}) {
     const [qtdEquip, setQtdEquip] = useState('');
 
     async function enviarDados(){
-        const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${nomeCondominio}/${qtdEquip}/${navegar}/${monitorar}/${servidor}/${nuvem}/${filiais}/${manha}/${tarde}/${noite}/${madrugada}`)
+        
+        var convManha = 'n'
+        if(manha){
+            convManha = 's'
+        }
+        var convTarde = 'n'
+        if(tarde){
+            convTarde = 's'
+        }
+        var convNoite = 'n'
+        if(noite){
+            convNoite = 's'
+        }
+        var convMadrugada = 'n'
+        if(madrugada){
+            convMadrugada = 's'
+        }
+        var convNavegar = 'n'
+        if(navegar){
+            convNavegar = 's'
+        }
+        var convMonitorar = 'n'
+        if(monitorar){
+            convMonitorar = 's'
+        }
+        var convServidor = 'n'
+        if(servidor){
+            convServidor = 's'
+        }
+        var convNuvem = 'n'
+        if(nuvem){
+            convNuvem = 's'
+        }
+        var convFiliais = 'n'
+        if(filiais){
+            convFiliais = 's'
+        }
+
+        const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${nomeCondominio}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
         console.log(orcamento)
         navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
     }

@@ -3,7 +3,6 @@ import 'react-native-gesture-handler';
 import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-//import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
 import api from '../services/API';
@@ -22,7 +21,7 @@ export default function formEmpresa({navigation}) {
     const [noite,setNoite] = useState(false);
     const [madrugada,setMadrugada] = useState(false);
 
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState('');//cidade
 
     const [nomeEmpresa, setNomeEmpresa] = useState('');
     const [nomeResEmpresa, setNomeResEmpresa] = useState('');
@@ -38,8 +37,40 @@ export default function formEmpresa({navigation}) {
         if(manha){
             convManha = 's'
         }
+        var convTarde = 'n'
+        if(tarde){
+            convTarde = 's'
+        }
+        var convNoite = 'n'
+        if(noite){
+            convNoite = 's'
+        }
+        var convMadrugada = 'n'
+        if(madrugada){
+            convMadrugada = 's'
+        }
+        var convNavegar = 'n'
+        if(navegar){
+            convNavegar = 's'
+        }
+        var convMonitorar = 'n'
+        if(monitorar){
+            convMonitorar = 's'
+        }
+        var convServidor = 'n'
+        if(servidor){
+            convServidor = 's'
+        }
+        var convNuvem = 'n'
+        if(nuvem){
+            convNuvem = 's'
+        }
+        var convFiliais = 'n'
+        if(filiais){
+            convFiliais = 's'
+        }
 
-        const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${navegar}/${monitorar}/${servidor}/${nuvem}/${filiais}/${convManha}/${tarde}/${noite}/${madrugada}`)
+        const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
         console.log(orcamento)
         console.log(convManha)
         navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
