@@ -41,7 +41,7 @@ export default function planoIndicado({route}) {
                     </View>
                    
                     <View>
-                        <Text style={styles.titulo}>teste{/* {planoIndicado.PlanoIndicado} */} </Text>
+                        <Text style={styles.titulo}>{planoIndicado['Plano indicado']} </Text>
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="home" color="#3b5998" size={26} /> 
                             <Text style={styles.text}>Para minha casa</Text>
@@ -59,7 +59,7 @@ export default function planoIndicado({route}) {
 
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="ethernet" color="#3b5998" size={26} /> 
-                            <Text style={styles.text}>IP Dinâmico</Text>
+                            <Text style={styles.text}> {planoIndicado['Ip']}</Text>
                         </View>
 
                     </View>
