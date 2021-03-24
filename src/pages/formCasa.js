@@ -77,7 +77,7 @@ export default function formPlanos({navigation}) {
         }
 
         const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${convCondominio}/${nomeCondominio}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
-        navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
+        navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]['orcamento']})
     }
 
     return ( 

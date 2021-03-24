@@ -13,11 +13,8 @@ export default function planoIndicado({route}) {
     useEffect(() => {
 
         async function init(){
-            const orcamento = route.params //2706
-            const valor = orcamento["orcamento"]
-            console.log(valor)
-            const plano = await api.get(`/planos/calculaplano/${valor}`)
-            console.log(plano)
+            const {orcamento} = route.params
+            const plano = await api.get(`/planos/calculaplano/${orcamento}`)
             setPlanoIndicado(plano.data[0])     
             
         }
