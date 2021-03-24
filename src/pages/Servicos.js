@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity,Text, Linking,SafeAreaView,ImageBackground } from 'react-native';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import api from '../services/API';
 
 export default function Servicos({navigation}) {
     return (

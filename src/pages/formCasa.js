@@ -1,28 +1,26 @@
 import React, {useState} from 'react';
 import 'react-native-gesture-handler';
-import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView,Alert } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
+import api from '../services/API';
 
 
 export default function formPlanos({navigation}) {
-//radio opções
     const [value, setValue] = useState('first');
-//radio sim ou não
-    const [valorRadio,setValorRadio] = useState(false);
 //checkbox 
-    const [option1,setOption1] = useState(false);
-    const [option2,setOption2] = useState(false);
-    const [option3,setOption3] = useState(false);
-    const [option4,setOption4] = useState(false);
-    const [option5,setOption5] = useState(false);
-    const [option6,setOption6] = useState(false);
-    const [option7,setOption7] = useState(false);
-    const [option8,setOption8] = useState(false);
-    const [option9,setOption9] = useState(false);
+    const [condominio,setCondominio] = useState(false);
+    const [navegar,setNavegar] = useState(false);
+    const [monitorar,setMonitorar] = useState(false);
+    const [servidor,setServidor] = useState(false);
+    const [nuvem,setNuvem] = useState(false);
+    const [filiais,setOFiliais] = useState(false);
+    const [manha,setManha] = useState(false);
+    const [tarde,setTarde] = useState(false);
+    const [noite,setNoite] = useState(false);
+    const [madrugada,setMadrugada] = useState(false);
 //dropdown
     const [selectedValue, setSelectedValue] = useState('');
 //inputs
@@ -33,23 +31,70 @@ export default function formPlanos({navigation}) {
     const [numeroEndCasa, setNumeroEndCasa] = useState();
     const [bairroCasa, setBairroCasa] = useState('');
     const [nomeCondominio, setNomeCondominio] = useState('');
+    const [qtdEquip, setQtdEquip] = useState('');
+
+    async function enviarDados(){
+
+        var convCondominio = 'n'
+        if(condominio){
+            convCondominio = 's'
+        }
+        var convManha = 'n'
+        if(manha){
+            convManha = 's'
+        }
+        var convTarde = 'n'
+        if(tarde){
+            convTarde = 's'
+        }
+        var convNoite = 'n'
+        if(noite){
+            convNoite = 's'
+        }
+        var convMadrugada = 'n'
+        if(madrugada){
+            convMadrugada = 's'
+        }
+        var convNavegar = 'n'
+        if(navegar){
+            convNavegar = 's'
+        }
+        var convMonitorar = 'n'
+        if(monitorar){
+            convMonitorar = 's'
+        }
+        var convServidor = 'n'
+        if(servidor){
+            convServidor = 's'
+        }
+        var convNuvem = 'n'
+        if(nuvem){
+            convNuvem = 's'
+        }
+        var convFiliais = 'n'
+        if(filiais){
+            convFiliais = 's'
+        }
+
+        const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${convCondominio}/${nomeCondominio}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
+        navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]['orcamento']})
+    }
 
     return ( 
 
-        
         <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}>
             <KeyboardAvoidingView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                     <View style={styles.titulos}>
 
                         <Text style={styles.titulo}>Internet para minha casa</Text>
-                        
+
                         <Text style={styles.subtitulo2}>Informe os dados abaixo para que possamos </Text>
 
                         <Text style={styles.subtitulo}> lhe indicar o melhor plano.</Text>
 
                     </View>
-               
+
                     <View style={styles.form}>
 
                         <TextInput 
@@ -108,22 +153,28 @@ export default function formPlanos({navigation}) {
                         value={bairroCasa}
                         onChangeText={setBairroCasa}
                         />
-                         <View style={styles.droview}>
+                        <View style={styles.droview}>
                             <Picker
                             style={styles.drop}
                             pickerStyleType={false}
                             selectedValue={selectedValue}
                             onValueChange={selectedValue => setSelectedValue(selectedValue)} value={selectedValue}
                             >
-                                <Picker.Item label="Cidade" value="picarrasCasa" />
-                                <Picker.Item label="Balneário Piçarras" value="picarrasCasa" />
-                                <Picker.Item label="Barra Velha" value="barravelhaCasa" />
-                                <Picker.Item label="Navegantes" value="navegantesCasa" />
-                                <Picker.Item label="Luiz Alves" value="luizalvesCasa" />
-                                <Picker.Item label="Penha" value="PenhaCasa" />
+                                <Picker.Item label="Cidade" value="picarras" />
+                                <Picker.Item label="Balneário Piçarras" value="picarras" />
+                                <Picker.Item label="Barra Velha" value="barravelha" />
+                                <Picker.Item label="Navegantes" value="navegantes" />
+                                <Picker.Item label="Luiz Alves" value="luizalves" />
+                                <Picker.Item label="Penha" value="penha" />
                             </Picker>
                         </View>
-
+                        <View style={styles.check}>
+                            <CheckBox
+                            checked={condominio}
+                            onPress=  {()=> setCondominio(!condominio)}
+                            />
+                            <Text>Moro em condomínio</Text>
+                        </View>
                         <TextInput 
                         style={styles.input}
                         placeholder="Nome do Condomínio"
@@ -132,127 +183,96 @@ export default function formPlanos({navigation}) {
                         value={nomeCondominio}
                         onChangeText={setNomeCondominio}
                         />
-
-                        <Text style={styles.titulo}>Mora em condomínio verical?</Text>
-                            <Text style={styles.subtitulo2}>Exemplo: Edifício</Text>
-
-                            <RadioButton.Group onValueChange={valorRadio => setValorRadio(valorRadio)} value={valorRadio}>
-
-                            <View style={styles.botao}>
-                                <RadioButton value="sim" />
-                                <Text style={styles.textRadio}>Sim</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="nao" />
-                                <Text style={styles.textRadio}>Não</Text>
-                            </View>
-
-                            </RadioButton.Group>
-
-                       
-                        <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
-                        <Text style={styles.subtitulo2}>Computador, celular, tablet, tv,</Text>
-                        <Text style={styles.subtitulo}> video game, câmeras, etc.</Text>
+                        <View style={styles.titulos}>
+                            <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
+                            <Text style={styles.subtitulo2}>Computador, celular, tablet, tv, etc.</Text>
+                        </View>
                         
-                        <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
+                        <TextInput 
+                        style={styles.input}
+                        placeholder="8"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        value={qtdEquip}
+                        keyboardType={'numeric'}
+                        onChangeText={setQtdEquip}
+                        />
+                       <View>
 
-                            <View style={styles.botao}>
-                                <RadioButton value="1 - 2 dispositivos" />
-                                <Text style={styles.textRadio}>1 - 2 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="3 - 5 dispositivos" />
-                                <Text  style={styles.textRadio}>3 - 5 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="6 - 8 dispositivos" />
-                                <Text  style={styles.textRadio}>6 - 8 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="9 dispositivos" />
-                                <Text  style={styles.textRadio}>  + 9 dispositivos</Text>
-                            </View>
-
-                        </RadioButton.Group>
-
-                        <View>
-
-                              <Text style={styles.titulo}>Uso a internet para:</Text>
+                            <Text style={styles.titulo}>Uso a internet para:</Text>
 
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option1}
-                                onPress=  {()=> setOption1(!option1)}
+                                checked={navegar}
+                                onPress=  {()=> setNavegar(!navegar)}
                                 />
-                                <Text>Navegar em sites</Text>
+                                <Text>Navegar em sites, e-mails</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option2}
-                                onPress=  {()=> setOption2(!option2)}
+                                checked={monitorar}
+                                onPress=  {()=> setMonitorar(!monitorar)}
                                 />
-                                <Text>Ler e enviar e-mails</Text>
+                                <Text>Sistema de monitoramento</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option3}
-                                onPress=  {()=> setOption3(!option3)}
+                                checked={servidor}
+                                onPress=  {()=> setServidor(!servidor)}
                                 />
-                                <Text>Acessar redes sociais</Text>
+                                <Text>Servidor interno</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option4}
-                                onPress=  {()=> setOption4(!option4)}
+                                checked={nuvem}
+                                onPress=  {()=> setNuvem(!nuvem)}
                                 />
-                                <Text>Assistir filmes e séries</Text>
+                                <Text>Sistema em nuvem</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option5}
-                                onPress=  {()=> setOption5(!option5)}
+                                checked={filiais}
+                                onPress=  {()=> setOFiliais(!filiais)}
                                 />
-                                <Text>Jogar on-line</Text>
+                                <Text>Conexão remota com filiais</Text>
                             </View>
-                            
                         </View>
 
                         <View>
 
-                              <Text style={styles.titulo}>Período que mais uso:</Text>
+                            <Text style={styles.titulo}>Período que mais uso:</Text>
 
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option6}
-                                onPress=  {()=> setOption6(!option6)}
+                                checked={manha}
+                                onPress=  {()=> setManha(!manha)}
                                 />
                                 <Text>Manhã</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option7}
-                                onPress=  {()=> setOption7(!option7)}
+                                checked={tarde}
+                                onPress=  {()=> setTarde(!tarde)}
                                 />
                                 <Text>Tarde</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option8}
-                                onPress=  {()=> setOption8(!option8)}
+                                checked={noite}
+                                onPress=  {()=> setNoite(!noite)}
                                 />
                                 <Text>Noite</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option9}
-                                onPress=  {()=> setOption9(!option9)}
+                                checked={madrugada}
+                                onPress=  {()=> setMadrugada(!madrugada)}
                                 />
                                 <Text>Madrugada</Text>
                             </View>
-                            
                         </View>
 
-                        <TouchableOpacity style={styles.submit} onPress={() => {Alert.alert("", "Enviado!");}}>
+                        <TouchableOpacity style={styles.submit} onPress={ () => enviarDados()}>
 
                             <View style={styles.botao}>
                                 <Text style={styles.submitText}>Mostrar Plano Indicado</Text>

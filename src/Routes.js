@@ -6,7 +6,9 @@ import formPlanos from './pages/formPlanos';
 import Tabs from './Tabs';
 import formCasa from './pages/formCasa';
 import formEmpresa from './pages/formEmpresa';
-import Location from './services/Location'
+import Location from './services/Location';
+import planoIndicado from './pages/planoIndicado';
+
 
   export default function Routes() {
     
@@ -76,6 +78,17 @@ import Location from './services/Location'
                 <Stack.Screen 
                 name="formEmpresa"
                 component={formEmpresa}
+                options={{
+                    title: 'Clinitec Internet Banda Larga',
+                    headerStyle: {
+                        backgroundColor: '#2d4d76',
+                    },
+                    headerTintColor: '#fff',
+                }}
+                />
+                <Stack.Screen 
+                name="planoIndicado"
+                component={planoIndicado}
                 options={{
                     title: 'Clinitec Internet Banda Larga',
                     headerStyle: {

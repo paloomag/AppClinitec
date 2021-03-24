@@ -3,6 +3,8 @@ import 'react-native-gesture-handler';
 import { Text, View, StyleSheet, Image, Linking,SafeAreaView, ImageBackground,KeyboardAvoidingView,TextInput, ScrollView, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import api from '../services/API';
+
 
 export default function formPlanos({navigation}) {
     return ( 

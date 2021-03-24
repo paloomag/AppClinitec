@@ -1,28 +1,27 @@
 import React, {useState} from 'react';
 import 'react-native-gesture-handler';
-import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView,Alert } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements'
 import {Picker} from '@react-native-picker/picker';
-
+import api from '../services/API';
 
 export default function formEmpresa({navigation}) {
 
     const [value, setValue] = useState('first');
-   
-    const [option1,setOption1] = useState(false);
-    const [option2,setOption2] = useState(false);
-    const [option3,setOption3] = useState(false);
-    const [option4,setOption4] = useState(false);
-    const [option5,setOption5] = useState(false);
-    const [option6,setOption6] = useState(false);
-    const [option7,setOption7] = useState(false);
-    const [option8,setOption8] = useState(false);
-    const [option9,setOption9] = useState(false);
 
-    const [selectedValue, setSelectedValue] = useState('');
+    const [navegar,setNavegar] = useState(false);
+    const [monitorar,setMonitorar] = useState(false);
+    const [servidor,setServidor] = useState(false);
+    const [nuvem,setNuvem] = useState(false);
+    const [filiais,setOFiliais] = useState(false);
+    const [manha,setManha] = useState(false);
+    const [tarde,setTarde] = useState(false);
+    const [noite,setNoite] = useState(false);
+    const [madrugada,setMadrugada] = useState(false);
+
+    const [selectedValue, setSelectedValue] = useState('');//cidade
 
     const [nomeEmpresa, setNomeEmpresa] = useState('');
     const [nomeResEmpresa, setNomeResEmpresa] = useState('');
@@ -31,6 +30,49 @@ export default function formEmpresa({navigation}) {
     const [numeroEndEmpresa, setNumeroEndEmpresa] = useState();
     const [enderecoEmpresa, setEnderecoEmpresa] = useState('');
     const [bairroEmpresa , setBairroEmpresa] = useState('');
+    const [qtdEquip, setQtdEquip] = useState('');
+
+    async function enviarDados(){
+        var convManha = 'n'
+        if(manha){
+            convManha = 's'
+        }
+        var convTarde = 'n'
+        if(tarde){
+            convTarde = 's'
+        }
+        var convNoite = 'n'
+        if(noite){
+            convNoite = 's'
+        }
+        var convMadrugada = 'n'
+        if(madrugada){
+            convMadrugada = 's'
+        }
+        var convNavegar = 'n'
+        if(navegar){
+            convNavegar = 's'
+        }
+        var convMonitorar = 'n'
+        if(monitorar){
+            convMonitorar = 's'
+        }
+        var convServidor = 'n'
+        if(servidor){
+            convServidor = 's'
+        }
+        var convNuvem = 'n'
+        if(nuvem){
+            convNuvem = 's'
+        }
+        var convFiliais = 'n'
+        if(filiais){
+            convFiliais = 's'
+        }
+
+        const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
+        navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]['orcamento']})
+    }
 
     return ( 
 
@@ -120,76 +162,64 @@ export default function formEmpresa({navigation}) {
                             selectedValue={selectedValue}
                             onValueChange={selectedValue => setSelectedValue(selectedValue)} value={selectedValue}
                             >
-                                <Picker.Item label="Cidade" value="picarrasEmpresa" />
-                                <Picker.Item label="Balneário Piçarras" value="picarrasEmpresa" />
-                                <Picker.Item label="Barra Velha" value="barravelhaEmpresa" />
-                                <Picker.Item label="Navegantes" value="navegantesEmpresa" />
-                                <Picker.Item label="Luiz Alves" value="luizalvesEmpresa" />
-                                <Picker.Item label="Penha" value="PenhaEmpresa" />
+                                <Picker.Item label="Cidade" value="semCidade" />
+                                <Picker.Item label="Balneário Piçarras" value="picarras" />
+                                <Picker.Item label="Barra Velha" value="barravelha" />
+                                <Picker.Item label="Navegantes" value="navegantes" />
+                                <Picker.Item label="Luiz Alves" value="luizalves" />
+                                <Picker.Item label="Penha" value="penha" />
                             </Picker>
                         </View>
-
-                        <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
-                        <Text style={styles.subtitulo2}>Computador, celular, tablet, tv,</Text>
-                        <Text style={styles.subtitulo}> video game, câmeras, etc.</Text>
+                        <View style={styles.titulos}>
+                            <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
+                            <Text style={styles.subtitulo}>Computador, celular, tablet, tv, etc.</Text>
+                        </View>
                         
-                        <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
-
-                            <View style={styles.botao}>
-                                <RadioButton value="1 - 2 dispositivos" />
-                                <Text style={styles.textRadio}>1 - 2 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="3 - 5 dispositivos" />
-                                <Text  style={styles.textRadio}>3 - 5 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="6 - 8 dispositivos" />
-                                <Text  style={styles.textRadio}>6 - 8 dispositivos</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="9 dispositivos" />
-                                <Text  style={styles.textRadio}>  + 9 dispositivos</Text>
-                            </View>
-
-                        </RadioButton.Group>
-
+                        <TextInput 
+                        style={styles.input}
+                        placeholder="8"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        value={qtdEquip}
+                        keyboardType={'numeric'}
+                        onChangeText={setQtdEquip}
+                        />
                         <View>
 
-                              <Text style={styles.titulo}>Uso a internet para:</Text>
+                            <Text style={styles.titulo}>Uso a internet para:</Text>
 
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option1}
-                                onPress=  {()=> setOption1(!option1)}
+                                checked={navegar}
+                                onPress=  {()=> setNavegar(!navegar)}
                                 />
                                 <Text>Navegar em sites, e-mails</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option2}
-                                onPress=  {()=> setOption2(!option2)}
+                                checked={monitorar}
+                                onPress=  {()=> setMonitorar(!monitorar)}
                                 />
                                 <Text>Sistema de monitoramento</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option3}
-                                onPress=  {()=> setOption3(!option3)}
+                                checked={servidor}
+                                onPress=  {()=> setServidor(!servidor)}
                                 />
                                 <Text>Servidor interno</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option4}
-                                onPress=  {()=> setOption4(!option4)}
+                                checked={nuvem}
+                                onPress=  {()=> setNuvem(!nuvem)}
                                 />
                                 <Text>Sistema em nuvem</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option5}
-                                onPress=  {()=> setOption5(!option5)}
+                                checked={filiais}
+                                onPress=  {()=> setOFiliais(!filiais)}
                                 />
                                 <Text>Conexão remota com filiais</Text>
                             </View>
@@ -202,36 +232,36 @@ export default function formEmpresa({navigation}) {
 
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option6}
-                                onPress=  {()=> setOption6(!option6)}
+                                checked={manha}
+                                onPress=  {()=> setManha(!manha)}
                                 />
                                 <Text>Manhã</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option7}
-                                onPress=  {()=> setOption7(!option7)}
+                                checked={tarde}
+                                onPress=  {()=> setTarde(!tarde)}
                                 />
                                 <Text>Tarde</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option8}
-                                onPress=  {()=> setOption8(!option8)}
+                                checked={noite}
+                                onPress=  {()=> setNoite(!noite)}
                                 />
                                 <Text>Noite</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
-                                checked={option9}
-                                onPress=  {()=> setOption9(!option9)}
+                                checked={madrugada}
+                                onPress=  {()=> setMadrugada(!madrugada)}
                                 />
                                 <Text>Madrugada</Text>
                             </View>
                             
                         </View>
 
-                        <TouchableOpacity style={styles.submit} onPress={() => {Alert.alert("", "Enviado!");}}>
+                        <TouchableOpacity style={styles.submit} onPress={ () => enviarDados()}>
 
                             <View style={styles.botao}>
                                 <Text style={styles.submitText}>Mostrar Plano Indicado</Text>
