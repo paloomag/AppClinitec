@@ -39,7 +39,7 @@ export default function planoIndicado({route}) {
                     </View>
                    
                     <View>
-                        <Text style={styles.titulo}>{/* {planoIndicado['Plano indicado']} */} </Text>
+                        <Text style={styles.titulo}> {planoIndicado['Plano indicado']} </Text>
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="home" color="#3b5998" size={26} /> 
                             <Text style={styles.text}>Para minha casa</Text>
@@ -52,7 +52,7 @@ export default function planoIndicado({route}) {
 
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="cloud-upload" color="#3b5998" size={26} /> 
-                            <Text style={styles.text}>Upload: {planoIndicado['Upload']}</Text>
+                            <Text style={styles.text}>Upload: {planoIndicado['Upload']} Mb</Text>
                         </View>
 
                         <View style={styles.board}>
