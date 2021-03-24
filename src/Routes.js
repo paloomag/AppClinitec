@@ -53,7 +53,6 @@ import planoIndicado from './pages/planoIndicado';
                     headerTintColor: '#fff',
                 }}
                 />
-
                 <Stack.Screen 
                 name="formPlanos"
                 component={formPlanos}
@@ -98,7 +97,6 @@ import planoIndicado from './pages/planoIndicado';
                     headerTintColor: '#fff',
                 }}
                 />
-
             </Stack.Navigator>
         </NavigationContainer>
     );
