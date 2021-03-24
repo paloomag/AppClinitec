@@ -11,6 +11,7 @@ import api from '../services/API';
 export default function formPlanos({navigation}) {
     const [value, setValue] = useState('first');
 //checkbox 
+    const [condominio,setCondominio] = useState(false);
     const [navegar,setNavegar] = useState(false);
     const [monitorar,setMonitorar] = useState(false);
     const [servidor,setServidor] = useState(false);
@@ -33,7 +34,11 @@ export default function formPlanos({navigation}) {
     const [qtdEquip, setQtdEquip] = useState('');
 
     async function enviarDados(){
-        
+
+        var convCondominio = 'n'
+        if(condominio){
+            convCondominio = 's'
+        }
         var convManha = 'n'
         if(manha){
             convManha = 's'
@@ -71,8 +76,7 @@ export default function formPlanos({navigation}) {
             convFiliais = 's'
         }
 
-        const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${nomeCondominio}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
-        console.log(orcamento)
+        const orcamento = await api.post(`/planos/planoresidencial/${nomeCompleto}/${telefoneCasa}/${emailCasa}/${enderecoCasa}/${numeroEndCasa}/${bairroCasa}/${selectedValue}/${convCondominio}/${nomeCondominio}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
         navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
     }
 
@@ -164,7 +168,13 @@ export default function formPlanos({navigation}) {
                                 <Picker.Item label="Penha" value="penha" />
                             </Picker>
                         </View>
-
+                        <View style={styles.check}>
+                            <CheckBox
+                            checked={condominio}
+                            onPress=  {()=> setCondominio(!condominio)}
+                            />
+                            <Text>Moro em condomínio</Text>
+                        </View>
                         <TextInput 
                         style={styles.input}
                         placeholder="Nome do Condomínio"
@@ -173,24 +183,6 @@ export default function formPlanos({navigation}) {
                         value={nomeCondominio}
                         onChangeText={setNomeCondominio}
                         />
-
-                        {/* <Text style={styles.titulo}>Mora em condomínio verical?</Text>
-                            <Text style={styles.subtitulo2}>Exemplo: Edifício</Text>
-
-                            <RadioButton.Group onValueChange={valorRadio => setValorRadio(valorRadio)} value={valorRadio}>
-
-                            <View style={styles.botao}>
-                                <RadioButton value="sim" />
-                                <Text style={styles.textRadio}>Sim</Text>
-                            </View>
-                            <View style={styles.botao}>
-                                <RadioButton value="nao" />
-                                <Text style={styles.textRadio}>Não</Text>
-                            </View>
-
-                            </RadioButton.Group>
-
-                        */}
                         <View style={styles.titulos}>
                             <Text style={styles.titulo}>Quantidade de dispositivos:</Text>
                             <Text style={styles.subtitulo2}>Computador, celular, tablet, tv, etc.</Text>
@@ -205,46 +197,45 @@ export default function formPlanos({navigation}) {
                         keyboardType={'numeric'}
                         onChangeText={setQtdEquip}
                         />
-                        <View>
+                       <View>
 
                             <Text style={styles.titulo}>Uso a internet para:</Text>
 
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={navegar}
-                                onPress=  {()=> setNavegar('s')}
+                                onPress=  {()=> setNavegar(!navegar)}
                                 />
                                 <Text>Navegar em sites, e-mails</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={monitorar}
-                                onPress=  {()=> setMonitorar('s')}
+                                onPress=  {()=> setMonitorar(!monitorar)}
                                 />
                                 <Text>Sistema de monitoramento</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={servidor}
-                                onPress=  {()=> setServidor('s')}
+                                onPress=  {()=> setServidor(!servidor)}
                                 />
                                 <Text>Servidor interno</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={nuvem}
-                                onPress=  {()=> setNuvem('s')}
+                                onPress=  {()=> setNuvem(!nuvem)}
                                 />
                                 <Text>Sistema em nuvem</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={filiais}
-                                onPress=  {()=> setOFiliais('s')}
+                                onPress=  {()=> setOFiliais(!filiais)}
                                 />
                                 <Text>Conexão remota com filiais</Text>
                             </View>
-                            
                         </View>
 
                         <View>
@@ -254,32 +245,31 @@ export default function formPlanos({navigation}) {
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={manha}
-                                onPress=  {()=> setManha('s')}
+                                onPress=  {()=> setManha(!manha)}
                                 />
                                 <Text>Manhã</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={tarde}
-                                onPress=  {()=> setTarde('s')}
+                                onPress=  {()=> setTarde(!tarde)}
                                 />
                                 <Text>Tarde</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={noite}
-                                onPress=  {()=> setNoite('s')}
+                                onPress=  {()=> setNoite(!noite)}
                                 />
                                 <Text>Noite</Text>
                             </View>
                             <View style={styles.check}>
                                 <CheckBox
                                 checked={madrugada}
-                                onPress=  {()=> setMadrugada('s')}
+                                onPress=  {()=> setMadrugada(!madrugada)}
                                 />
                                 <Text>Madrugada</Text>
                             </View>
-                            
                         </View>
 
                         <TouchableOpacity style={styles.submit} onPress={ () => enviarDados()}>

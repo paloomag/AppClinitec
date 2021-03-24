@@ -71,8 +71,6 @@ export default function formEmpresa({navigation}) {
         }
 
         const orcamento = await api.post(`/planos/planoempresarial/${nomeEmpresa}/${nomeResEmpresa}/${telefoneEmpresa}/${emailEmpresa}/${enderecoEmpresa}/${numeroEndEmpresa}/${bairroEmpresa}/${selectedValue}/${qtdEquip}/${convNavegar}/${convMonitorar}/${convServidor}/${convNuvem}/${convFiliais}/${convManha}/${convTarde}/${convNoite}/${convMadrugada}`)
-        console.log(orcamento)
-        console.log(convManha)
         navigation.navigate('planoIndicado', {orcamento:orcamento.data[0]})
     }
 

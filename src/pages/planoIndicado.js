@@ -13,11 +13,12 @@ export default function planoIndicado({route}) {
     useEffect(() => {
 
         async function init(){
-            const orcamento = 2706//route.params
-            console.log(orcamento)
-            const plano = await api.get(`/planos/calculaplano/${orcamento}`)
-            setPlanoIndicado(plano.data[0])
-            console.log(planoIndicado['Plano indicado'])
+            const orcamento = route.params //2706
+            const valor = orcamento["orcamento"]
+            console.log(valor)
+            const plano = await api.get(`/planos/calculaplano/${valor}`)
+            console.log(plano)
+            setPlanoIndicado(plano.data[0])     
             
         }
         init()
@@ -41,7 +42,7 @@ export default function planoIndicado({route}) {
                     </View>
                    
                     <View>
-                        <Text style={styles.titulo}>{planoIndicado['Plano indicado']} </Text>
+                        <Text style={styles.titulo}>{/* {planoIndicado['Plano indicado']} */} </Text>
                         <View style={styles.board}>
                             <MaterialCommunityIcons name="home" color="#3b5998" size={26} /> 
                             <Text style={styles.text}>Para minha casa</Text>
