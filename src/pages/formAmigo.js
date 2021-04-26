@@ -27,6 +27,7 @@ export default function formAmigo({navigation}) {
     const [cepIndicado,setCepIndicado] = useState();
 
         return ( 
+            
         <KeyboardAvoidingView style={styles.container}>
 
             <ImageBackground style={styles.back} source={require('../components/img/back2.jpg')}> 
